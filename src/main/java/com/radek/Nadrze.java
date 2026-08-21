@@ -2,48 +2,50 @@ package com.radek;
 
 import java.time.LocalDate;
 
-public class Nadrze extends Auto {
-    private double minimum;
-    private double maximum;
-    private LocalDate datumMinimaAMaxima;
 
-    public Nadrze(String spz, String znacka, double minimum, double maximum, LocalDate datumMinimaAMaxima) {
-        super(spz, znacka);
-        setMinimum(minimum);
-        setMaximum(maximum);
-        setDatumMinimaAMaxima(datumMinimaAMaxima);
+public class Nadrze  {
+    private Auto auto;
+    private double aktualniStavNadrze;
+    private LocalDate datumAktualnihoStavuNadrze;
+
+    public Nadrze(Auto auto, double aktualniStavNadrze, LocalDate datumAktualnihoStavuNadrze) {
+        setAuto(auto);
+        setAktualniStavNadrze(aktualniStavNadrze);
+        setDatumAktualnihoStavuNadrze(datumAktualnihoStavuNadrze);
     }
 
-    public double getMinimum() {
-        return minimum;
+    public Auto getAuto() {
+        return auto;
     }
 
-    public void setMinimum(double minimum) {
-        this.minimum = minimum;
+    public void setAuto(Auto auto) {
+        this.auto = auto;
     }
 
-    public double getMaximum() {
-        return maximum;
+    public void setAktualniStavNadrze(double aktualniStavNadrze) {
+        this.aktualniStavNadrze = aktualniStavNadrze;
     }
 
-    public void setMaximum(double maximum) {
-        this.maximum = maximum;
+    public double getAktualniStavNadrze() {
+        return aktualniStavNadrze;
     }
 
-    public LocalDate getDatumMinimaAMaxima() {
-        return datumMinimaAMaxima;
+    public LocalDate getDatumAktualnihoStavuNadrze() {
+        return datumAktualnihoStavuNadrze;
     }
 
-    public void setDatumMinimaAMaxima(LocalDate datumMinimaAMaxima) {
-        this.datumMinimaAMaxima = datumMinimaAMaxima;
+    public void setDatumAktualnihoStavuNadrze(LocalDate datumAktualnihoStavuNadrze) {
+        this.datumAktualnihoStavuNadrze = datumAktualnihoStavuNadrze;
     }
+
+
 
     @Override
     public String toString() {
-        return super.toString() + " Nadrze{" +
-                " minimum= " + minimum +
-                ", maximum= " + maximum +
-                ", datumMinimaAMaxima= " + datumMinimaAMaxima +
+        return " Nadrze{"+
+        " auto= " + auto.getSpz() +
+                ", aktuální stav v nádrži= "+ aktualniStavNadrze +
+                ", datum aktuálního stavu nádrže = " + datumAktualnihoStavuNadrze +
                 '}';
     }
 }

@@ -58,4 +58,56 @@ public class ManagerTankovani {
             System.out.println(t);
         }
     }
+
+    public void pridatStavNadrze(Nadrze nadrze){
+        nadrzeList.add(nadrze);
+    }
+
+    public boolean odebratStavNadrze(Nadrze nadrze){
+        return nadrzeList.remove(nadrze);
+    }
+
+    public  void vypisVsechnyStavyNadrzi(){
+        for(Nadrze n :nadrzeList){
+            System.out.println(n);
+        }
+    }
+
+    public double zjistiMinimum(Auto auto, LocalDate datum){
+        double min = Double.MAX_VALUE;
+        for (Nadrze n : nadrzeList){
+            if (n.getAuto().getSpz().equals(auto.getSpz()) && n.getDatumAktualnihoStavuNadrze().equals(datum)){
+                if (n.getAktualniStavNadrze() < min){
+                    min = n.getAktualniStavNadrze();
+                }
+            }
+        }
+        return min;
+    }
+
+    public double zjistiMaximum(Auto auto,LocalDate datum){
+        double max = 0;
+        for (Nadrze n : nadrzeList){
+            if (n.getAuto().getSpz().equals(auto.getSpz()) && n.getDatumAktualnihoStavuNadrze().equals(datum)){
+                if (n.getAktualniStavNadrze()> max){
+                    max = n.getAktualniStavNadrze();
+                }
+            }
+        }
+        return max;
+    }
+
+    public boolean overTankovani(Tankovani tankovani){
+        double min = zjistiMinimum(tankovani.getAuto(), tankovani.getDatumTankovani());
+        double max = zjistiMaximum(tankovani.getAuto(), tankovani.getDatumTankovani());
+        double rozdil = max - min;
+        return Math.abs(rozdil - tankovani.getNatankovaneLitryPaliva()) < 0.01;
+    }
+
+    public double zjistiPrirustek(Auto auto, LocalDate datum){
+        double min = zjistiMinimum(auto, datum);
+        double max = zjistiMaximum(auto, datum);
+        return max - min;
+    }
+
 }
